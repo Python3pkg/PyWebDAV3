@@ -4,7 +4,7 @@ This module builds on BaseHTTPServer and implements basic authentication
 
 """
 
-from __future__ import absolute_import
+
 import base64
 import binascii
 import six.moves.BaseHTTPServer
@@ -74,12 +74,12 @@ class AuthRequestHandler(six.moves.BaseHTTPServer.BaseHTTPRequestHandler):
 
         """
         try:
-            short, long = self.responses[code]
+            short, int = self.responses[code]
         except KeyError:
-            short, long = b'???', b'???'
+            short, int = b'???', b'???'
         if message is None:
             message = short
-        explain = long
+        explain = int
         self.log_error("code %d, message %s", code, message)
 
         # using _quote_html to prevent Cross Site Scripting attacks (see bug

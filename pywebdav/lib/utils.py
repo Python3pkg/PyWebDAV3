@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import time
 import re
 
@@ -110,7 +110,7 @@ def make_xmlresponse(result):
     doc.documentElement.setAttribute("xmlns:D","DAV:")
     doc.documentElement.tagName = "D:multistatus"
 
-    for el,ec in result.items():
+    for el,ec in list(result.items()):
         re=doc.createElementNS("DAV:","response")
         hr=doc.createElementNS("DAV:","href")
         st=doc.createElementNS("DAV:","status")

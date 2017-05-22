@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from .propfind import PROPFIND
 from xml.dom import minidom
 domimpl = minidom.getDOMImplementation()

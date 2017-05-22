@@ -75,7 +75,7 @@ class Test(unittest.TestCase):
                     assert line.endswith('pass'), line
 
         finally:
-            print('\n'.join(result))
+            print(('\n'.join(result)))
 
             print('Stopping davserver')
             self.davserver_proc.kill()
@@ -109,7 +109,7 @@ class Test(unittest.TestCase):
                     assert line.endswith('pass'), line
 
         finally:
-            print('\n'.join(result))
+            print(('\n'.join(result)))
 
             print('Stopping davserver')
             self.davserver_proc.kill()

@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import xml.dom.minidom
 domimpl = xml.dom.minidom.getDOMImplementation()
 
@@ -87,7 +87,7 @@ class COPY:
         doc = domimpl.createDocument(None, "D:multistatus", None)
         doc.documentElement.setAttribute("xmlns:D","DAV:")
 
-        for el,ec in result.items():
+        for el,ec in list(result.items()):
                 re=doc.createElement("D:response")
                 hr=doc.createElement("D:href")
                 st=doc.createElement("D:status")

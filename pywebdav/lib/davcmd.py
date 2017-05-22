@@ -8,7 +8,7 @@ resources and collections
 
 """
 
-from __future__ import absolute_import
+
 from six.moves import urllib
 
 from .utils import create_treelist, is_prefix
@@ -52,7 +52,7 @@ def deltree(dc,uri,exclude={}):
             if not ok: continue
 
         # here we test for the exclude list which is the other way round!
-        for p in exclude.keys():
+        for p in list(exclude.keys()):
             if is_prefix(p,element):
                 ok=None
                 break

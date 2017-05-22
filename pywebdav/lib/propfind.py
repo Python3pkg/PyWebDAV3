@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import xml.dom.minidom
 domimpl = xml.dom.minidom.getDOMImplementation()
 
@@ -122,7 +122,7 @@ class PROPFIND:
         """ return a list of all properties """
         self.proplist = {}
         self.namespaces = []
-        for ns, plist in self._dataclass.get_propnames(self._uri).items():
+        for ns, plist in list(self._dataclass.get_propnames(self._uri).items()):
             self.proplist[ns] = plist
             self.namespaces.append(ns)
 
@@ -208,7 +208,7 @@ class PROPFIND:
         ps = doc.createElement("D:propstat")
         nsnum = 0
 
-        for ns, plist in propnames.items():
+        for ns, plist in list(propnames.items()):
             # write prop element
             pr = doc.createElement("D:prop")
             nsp = "ns" + str(nsnum)
@@ -261,12 +261,12 @@ class PROPFIND:
             re.appendChild(ps)
 
         gp = doc.createElement("D:prop")
-        for ns in good_props.keys():
+        for ns in list(good_props.keys()):
             if ns != 'DAV:':
                 ns_prefix = "ns" + str(self.namespaces.index(ns)) + ":"
             else:
                 ns_prefix = 'D:'
-            for p, v in good_props[ns].items():
+            for p, v in list(good_props[ns].items()):
 
                 pe = doc.createElement(ns_prefix + str(p))
                 if isinstance(v, xml.dom.minidom.Element):
@@ -296,13 +296,13 @@ class PROPFIND:
         if len(list(bad_props.items())):
 
             # write a propstat for each error code
-            for ecode in bad_props.keys():
+            for ecode in list(bad_props.keys()):
                 ps = doc.createElement("D:propstat")
                 re.appendChild(ps)
                 bp = doc.createElement("D:prop")
                 ps.appendChild(bp)
 
-                for ns in bad_props[ecode].keys():
+                for ns in list(bad_props[ecode].keys()):
                     if ns != 'DAV:':
                         ns_prefix = "ns" + str(self.namespaces.index(ns)) + ":"
                     else:
@@ -334,7 +334,7 @@ class PROPFIND:
         bad_props = {}
 
         ddc = self._dataclass
-        for ns, plist in self.proplist.items():
+        for ns, plist in list(self.proplist.items()):
             good_props[ns] = {}
             for prop in plist:
                 ec = 0

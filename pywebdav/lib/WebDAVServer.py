@@ -3,7 +3,7 @@
 This module builds on BaseHTTPServer and implements DAV commands
 
 """
-from __future__ import absolute_import
+
 from . import AuthServer
 from six.moves import urllib
 import logging
@@ -68,7 +68,7 @@ class DAVRequestHandler(AuthServer.AuthRequestHandler, LockManager):
 
         self._send_dav_version()
 
-        for a, v in headers.items():
+        for a, v in list(headers.items()):
             v = v.encode() if isinstance(v, six.text_type) else v
             self.send_header(a, v)
 
@@ -131,7 +131,7 @@ class DAVRequestHandler(AuthServer.AuthRequestHandler, LockManager):
 
         self._send_dav_version()
 
-        for a, v in headers.items():
+        for a, v in list(headers.items()):
             self.send_header(a, v)
 
         GZDATA = None
